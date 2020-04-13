@@ -13,23 +13,24 @@
           placeholder="Search..."
           v-model="query"
         />
-        {{ query }}
       </form>
-      <div class="weather-wrap" v-if="typeof weather.main != 'undefined'"></div>
-      <div class="location-container">
-        <div class="location-div">Manassas, Va</div>
-        <div class="date">Wednesday 20 April 2020</div>
-      </div>
-      <div class="weather-container">
-        <div class="temp">70° F</div>
-        <div class="weather">Rain</div>
+      <div class="weather-wrap" v-if="weather.exists === true">
+        <div class="location-container">
+          <div class="location-div">
+            {{ weather.city }} , {{ weather.country }}
+          </div>
+          <div class="date">{{ Date.now() }}</div>
+        </div>
+        <div class="weather-container">
+          <div class="temp">{{ Math.round(weather.temperature) }}° F</div>
+          <div class="weather">{{ weather.conditions }}</div>
+        </div>
       </div>
     </main>
   </div>
 </template>
 
 <script>
-// import axios from "axios";
 export default {
   name: "App",
   data() {
@@ -37,16 +38,48 @@ export default {
       api_key: "e824bd9b37677b9809c9e3a2ce50bb28",
       base_url: "http://api.openweathermap.org/data/2.5/",
       query: "",
-      weather: {}
-      // api.openweathermap.org/data/2.5/weather?q=london&appid=e824bd9b37677b9809c9e3a2ce50bb28
+      weather: {
+        city: "",
+        country: "",
+        temperature: "",
+        conditions: "",
+        exists: false
+      }
     };
   },
   methods: {
     getWeather(e) {
       e.preventDefault();
-      fetch(`${this.base_url}weather?q=${this.query}&appid=${this.api_key}`)
+      fetch(
+        `${this.base_url}weather?q=${this.query}&units=Imperial&appid=${this.api_key}`
+      )
         .then(res => res.json())
-        .then(res => console.log(res));
+        .then(res => {
+          this.weather.city = res.name;
+          this.weather.country = res.sys.country;
+          this.weather.temperature = res.main.temp;
+          this.weather.conditions = res.weather[0].main;
+        })
+
+        .catch(err => console.log(err));
+      this.weather.exists = true;
+    },
+    getDate() {
+      let date = new Date();
+      let months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "Septermber",
+        "October",
+        "November",
+        "December"
+      ];
     }
   }
 };
