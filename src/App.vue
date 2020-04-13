@@ -1,8 +1,14 @@
 <template>
   <div id="app">
     <main>
-      <form action="submit" class="search-container">
-        <input type="text" class="search-bar" placeholder="Search..." />
+      <form action="submit" class="search-container" @keypress="getWeather">
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="Search..."
+          v-model="query"
+        />
+        {{ query }}
       </form>
       <div class="weather-wrap"></div>
       <div class="location-container">
@@ -18,13 +24,23 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "App",
   data() {
     return {
       api_key: "56d8665da94e425b19bae655a790938a",
-      base_url: "api.openweathermap.org/data/2.5/"
+      base_url: "api.openweathermap.org/data/2.5/",
+      query: "",
+      weather: {}
     };
+  },
+  methods: {
+    getWeather(e) {
+      e.preventDefault();
+      if (e.key === "Enter") {
+      }
+    }
   }
 };
 </script>
