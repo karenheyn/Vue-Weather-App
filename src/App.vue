@@ -187,4 +187,10 @@ main {
   font-style: italic;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
+@media only screen and (min-width: 600px) {
+  .search-container .search-bar {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
 </style>
