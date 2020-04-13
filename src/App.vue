@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       api_key: "e824bd9b37677b9809c9e3a2ce50bb28",
-      base_url: "api.openweathermap.org/data/2.5/",
+      base_url: "http://api.openweathermap.org/data/2.5/",
       query: "",
       weather: {}
       // api.openweathermap.org/data/2.5/weather?q=london&appid=e824bd9b37677b9809c9e3a2ce50bb28
@@ -44,11 +44,9 @@ export default {
   methods: {
     getWeather(e) {
       e.preventDefault();
-      fetch(
-        `${this.base_url}weather?q=${this.query}&appid=${this.api_key}`
-      ).then(res => console.log(res));
-      // .then(res => (this.weather = res))
-      // .catch(err => console.log(err));
+      fetch(`${this.base_url}weather?q=${this.query}&appid=${this.api_key}`)
+        .then(res => res.json())
+        .then(res => console.log(res));
     }
   }
 };
