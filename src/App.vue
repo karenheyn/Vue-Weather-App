@@ -10,7 +10,7 @@
         <div class="date">Wednesday 20 April 2020</div>
       </div>
       <div class="weather-container">
-        <div class="temp">70 F</div>
+        <div class="temp">70° F</div>
         <div class="weather">Rain</div>
       </div>
     </main>
@@ -22,7 +22,8 @@ export default {
   name: "App",
   data() {
     return {
-      api_key: "56d8665da94e425b19bae655a790938a"
+      api_key: "56d8665da94e425b19bae655a790938a",
+      base_url: "api.openweathermap.org/data/2.5/"
     };
   }
 };
@@ -71,5 +72,42 @@ main {
 .search-container .search-bar:focus {
   background-color: rgba(255, 255, 255, 0.75);
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.75);
+}
+
+.location-container .location-div {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: -1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.location-container .date {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  text-shadow: -1px 2px rgba(0, 0, 0, 0.25);
+}
+.weather-container {
+  text-align: center;
+}
+.weather-container .temp {
+  display: inline-block;
+  padding: 10px 0;
+  font-size: 85px;
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  margin: 30px 0;
+}
+
+.weather-container .weather {
+  color: #ffffff;
+  font-size: 48px;
+  font-weight: 600;
+  font-style: italic;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
 </style>
