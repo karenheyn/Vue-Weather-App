@@ -4,6 +4,15 @@
       <form action="submit" class="search-container">
         <input type="text" class="search-bar" placeholder="Search..." />
       </form>
+      <div class="weather-wrap"></div>
+      <div class="location-container">
+        <div class="location-div">Manassas, Va</div>
+        <div class="date">Wednesday 20 April 2020</div>
+      </div>
+      <div class="weather-container">
+        <div class="temp">70 F</div>
+        <div class="weather">Rain</div>
+      </div>
     </main>
   </div>
 </template>
