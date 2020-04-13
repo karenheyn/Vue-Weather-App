@@ -53,6 +53,14 @@ main {
   appearance: none;
   border: none;
   outline: none;
-  background-color: rgba(255, 255, 255 0.15);
+  background: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: 400ms;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+}
+
+.search-container .search-bar:focus {
+  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.75);
 }
 </style>
