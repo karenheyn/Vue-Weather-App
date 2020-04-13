@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   name: "App",
   data() {
@@ -38,15 +38,17 @@ export default {
       base_url: "api.openweathermap.org/data/2.5/",
       query: "",
       weather: {}
+      // api.openweathermap.org/data/2.5/weather?q=london&appid=e824bd9b37677b9809c9e3a2ce50bb28
     };
   },
   methods: {
     getWeather(e) {
       e.preventDefault();
-      axios
-        .get(`${this.base_url}weather?q=${this.query}&appid=${this.api_key}`)
-        .then(res => res.json())
-        .then(res => (this.weather = res));
+      fetch(
+        `${this.base_url}weather?q=${this.query}&appid=${this.api_key}`
+      ).then(res => console.log(res));
+      // .then(res => (this.weather = res))
+      // .catch(err => console.log(err));
     }
   }
 };
