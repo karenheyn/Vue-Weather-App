@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <main>
-      <form action="submit" class="search-container" @keypress="getWeather">
+      <form
+        type="submit"
+        action="submit"
+        class="search-container"
+        @submit="getWeather"
+      >
         <input
           type="text"
           class="search-bar"
@@ -39,6 +44,11 @@ export default {
     getWeather(e) {
       e.preventDefault();
       if (e.key === "Enter") {
+        axios
+          .get(`${this.base_url}weather?q=${this.query}&APPID=${this.api_key}`)
+          .then(res => res.json())
+          .then(res => (this.weather = res))
+          .catch(err => console.log(err));
       }
     }
   }
