@@ -15,7 +15,7 @@
         />
         {{ query }}
       </form>
-      <div class="weather-wrap"></div>
+      <div class="weather-wrap" v-if="typeof weather.main != 'undefined'"></div>
       <div class="location-container">
         <div class="location-div">Manassas, Va</div>
         <div class="date">Wednesday 20 April 2020</div>
@@ -34,7 +34,7 @@ export default {
   name: "App",
   data() {
     return {
-      api_key: "56d8665da94e425b19bae655a790938a",
+      api_key: "e824bd9b37677b9809c9e3a2ce50bb28",
       base_url: "api.openweathermap.org/data/2.5/",
       query: "",
       weather: {}
@@ -43,13 +43,10 @@ export default {
   methods: {
     getWeather(e) {
       e.preventDefault();
-      if (e.key === "Enter") {
-        axios
-          .get(`${this.base_url}weather?q=${this.query}&APPID=${this.api_key}`)
-          .then(res => res.json())
-          .then(res => (this.weather = res))
-          .catch(err => console.log(err));
-      }
+      axios
+        .get(`${this.base_url}weather?q=${this.query}&appid=${this.api_key}`)
+        .then(res => res.json())
+        .then(res => (this.weather = res));
     }
   }
 };
