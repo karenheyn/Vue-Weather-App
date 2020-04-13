@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="weather.temperature > 55 ? 'warm' : ''">
     <main>
       <form
         type="submit"
@@ -19,7 +19,7 @@
           <div class="location-div">
             {{ weather.city }} , {{ weather.country }}
           </div>
-          <div class="date">{{ Date.now() }}</div>
+          <div class="date">{{ getDate() }}</div>
         </div>
         <div class="weather-container">
           <div class="temp">{{ Math.round(weather.temperature) }}° F</div>
@@ -65,7 +65,7 @@ export default {
       this.weather.exists = true;
     },
     getDate() {
-      let date = new Date();
+      let d = new Date();
       let months = [
         "January",
         "February",
@@ -80,6 +80,22 @@ export default {
         "November",
         "December"
       ];
+      let days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ];
+
+      let day = days[d.getDay()];
+      let date = d.getDate();
+      let month = months[d.getMonth()];
+      let year = d.getFullYear();
+
+      return `${day} ${date} ${month} ${year}`;
     }
   }
 };
@@ -97,6 +113,10 @@ export default {
   background-size: cover;
   background-position: center;
   min-height: 400ms;
+}
+
+#app.warm {
+  background-image: url("./assets/warm.jpg");
 }
 
 main {
